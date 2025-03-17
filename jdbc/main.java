@@ -6,19 +6,33 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.insertarUsuario("Zully", "Zully@gmail.com");
-        usuarioDAO.insertarUsuario("pedro", "pedrogomez@gmail.com");
-        usuarioDAO.insertarUsuario("Valentina", "Valentina@gmail.com");
 
-        List<String> ListaUsuarios = usuarioDAO.obtenerUsuarios();
-        for(String usuario : listaUsuarios) {
+        // Insertar usuarios
+        /*
+        usuarioDAO.insertarUsuario("Zully", "Zully@gmail.com");
+        usuarioDAO.insertarUsuario("Pedro", "pedrogomez@gmail.com");
+        usuarioDAO.insertarUsuario("Valentina", "Valentina@gmail.com");
+            */
+        // Obtener y mostrar usuarios
+        List<String> listaUsuarios = usuarioDAO.obtenerUsuarios();
+        for (String usuario : listaUsuarios) {
             System.out.println(usuario);
         }
-        usuarioDAO.actualizarUsuario(3, "jaime", "jaime@gmail.com");
+
+        // Actualizar usuario con ID 3
+        usuarioDAO.actualizarUsuario(3, "Jaime", "jaime@gmail.com");
+
+        // Obtener y mostrar usuarios después de la actualización
         listaUsuarios = usuarioDAO.obtenerUsuarios();
         System.out.println("#############################");
-        for (String usuario : ListaUsuarios) {
+        System.out.println("Usuarios actualizados");
+        for (String usuario : listaUsuarios) {
             System.out.println(usuario);
         }
+
+        // Obtener y mostrar el usuario eliminado
+        System.out.println("###############################");
+        usuarioDAO.eliminarUsuario(6);
+        System.out.println(usuarioDAO.obtenerUsuarios());
     }
 }
