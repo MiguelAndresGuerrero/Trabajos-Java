@@ -34,5 +34,10 @@ public class main {
         System.out.println("###############################");
         usuarioDAO.eliminarUsuario(6);
         System.out.println(usuarioDAO.obtenerUsuarios());
+
+        // Obtener y mostrar los usuarios por id
+        System.out.println("###############################");
+        System.out.println("Usuarios por id");
+        usuarioDAO.buscarIdUsuarios();
     }
 }

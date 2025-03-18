@@ -85,19 +85,38 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
     }
+
     // Eliminar (Delete)
     // Delete usuarios por ID
     public void eliminarUsuario(int id){
         String sql = "DELETE FROM usuarios WHERE id=?";
         try(
-                Connection conexionInterna = conectar();
-                PreparedStatement solicitud = conexionInterna.prepareStatement(sql)){
+            Connection conexionInterna = conectar();
+            PreparedStatement solicitud = conexionInterna.prepareStatement(sql)){
             solicitud.setInt(1, id);
             int filas = solicitud.executeUpdate();
             if(filas > 0){
                 System.out.println("El usuario con el id:  " + id + " fue  eliminado exitosamente!");
             } else{
                 System.out.println("No se pudo encontrar el usuario con el ID " + id);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Mostrar resultados por id
+    public void buscarIdUsuarios(){
+        String sql = "SELECT id FROM usuarios ORDER BY id ASC";
+        try (
+            Connection conexionInterna = conectar();
+            PreparedStatement solicitud = conexionInterna.prepareStatement(sql);
+            ResultSet resultado = solicitud.executeQuery()
+        ){
+            while (resultado.next()) {
+                int id = resultado.getInt("id");
+                System.out.println("id : " + id);
             }
         }
         catch (SQLException e) {
